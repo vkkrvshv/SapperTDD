@@ -7,4 +7,16 @@ public class Model {
     public void generateBoard(int FIELD_SIZE, int mines) {
 
     }
+
+    private void incrementCountAroundCell(int row, int column) {
+
+    }
+
+    private boolean isWon() {
+
+    }
+
+    private boolean outOfBounds(int column,int row) {
+
+    }
 }

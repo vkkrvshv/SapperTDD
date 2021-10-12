@@ -2,7 +2,7 @@ public class Controller {
     Model model;
 
     Controller(Model model){
-
+        this.model = model;
     }
 
     void openCell(int row, int column) throws NullPointerException {
