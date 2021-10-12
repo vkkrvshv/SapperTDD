@@ -49,19 +49,49 @@ public class View extends JFrame implements ActionListener {
     }
 
     public void update(Cell cell) {
+        cells[cell.column][cell.row] = cell;
 
     }
 
     public void gameOver() {
-
+        this.setTitle("Игра окончена");
+        for (int j = 0; j < buttons.length; j++) {
+            for (int i = 0; i < buttons[0].length; i++) {
+                if (cells[i][j].mined) {
+                    buttons[i][j].setBackground(Color.red);
+                    buttons[i][j].setText("*");
+                }
+                buttons[i][j].setEnabled(false);
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Игра окончена");
     }
 
     public void startGame() {
-
+        this.setTitle("Игра идёт");
+        for (int j = 0; j < buttons.length; j++) {
+            for (int i = 0; i < buttons[0].length; i++) {
+                buttons[i][j].setEnabled(true);
+                buttons[i][j].setText("");
+                buttons[i][j].setBackground((new JButton()).getBackground());
+                buttons[i][j].setDisabledIcon((new JButton()).getDisabledIcon());
+            }
+        }
     }
 
     public void win()
     {
-
+        this.setTitle("Победа!");
+        for (int j = 0; j < buttons.length; j++) {
+            for (int i = 0; i < buttons[0].length; i++) {
+                buttons[i][j].setEnabled(false);
+                if(cells[i][j].mined)
+                {
+                    buttons[i][j].setText("*");
+                    buttons[i][j].setBackground(Color.green);
+                }
+            }
+        }
+        JOptionPane.showMessageDialog(this, "Победа!");
     }
 }
