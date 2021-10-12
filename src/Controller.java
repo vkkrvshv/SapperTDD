@@ -10,6 +10,6 @@ public class Controller {
     }
 
     void newGame(int FIELD_SIZE, int mines){
-
+        model.generateBoard(FIELD_SIZE, mines);
     }
 }
