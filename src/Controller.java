@@ -6,7 +6,7 @@ public class Controller {
     }
 
     void openCell(int row, int column) throws NullPointerException {
-
+        model.openCell(row, column);
     }
 
     void newGame(int FIELD_SIZE, int mines){

@@ -7,10 +7,4 @@ public class CellTest {
         Cell cell = new Cell(1,1);
         Assert.assertNotNull(cell);
     }
-
-    @Test
-    public void testConstructor1(){
-        Cell cell = new Cell();
-        Assert.assertNotNull(cell);
-    }
 }

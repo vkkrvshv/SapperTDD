@@ -12,11 +12,4 @@ public class Cell {
         this.row = row;
         this.column = column;
     }
-
-    Cell()
-    {
-        mined = false;
-        counter = 0;
-        state = "closed";
-    }
 }

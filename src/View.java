@@ -7,14 +7,15 @@ class Panel extends JPanel
 {
 }
 
-public class View extends JFrame implements ActionListener {
+public class View extends JFrame implements Miner, ActionListener {
     Cell[][] cells = new Cell[Model.FIELD_SIZE][Model.FIELD_SIZE];
     JButton[][] buttons = new JButton[Model.FIELD_SIZE][Model.FIELD_SIZE];
+    Controller controller;
     GridLayout grid = new GridLayout(Model.FIELD_SIZE, Model.FIELD_SIZE);
 
-    Controller controller;
-
     View(Model model) {
+        controller = new Controller(model);
+
         setTitle("Сапёр");
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(500, 500);
@@ -44,6 +45,7 @@ public class View extends JFrame implements ActionListener {
         setVisible(true);
     }
 
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(this.getJMenuBar().getComponent(0))) {
@@ -72,9 +74,20 @@ public class View extends JFrame implements ActionListener {
 
     public void update(Cell cell) {
         cells[cell.column][cell.row] = cell;
-
+        if (cell.state == "opened") {
+            if (cell.mined) {
+                buttons[cell.column][cell.row].setText("*");
+            }
+            else {
+                buttons[cell.column][cell.row].setText(cell.counter + "");
+                if (cells[cell.column][cell.row].state == "opened") {
+                    buttons[cell.column][cell.row].setEnabled(false);
+                }
+            }
+        }
     }
 
+    @Override
     public void gameOver() {
         this.setTitle("Игра окончена");
         for (int j = 0; j < buttons.length; j++) {
@@ -89,6 +102,7 @@ public class View extends JFrame implements ActionListener {
         JOptionPane.showMessageDialog(this, "Игра окончена");
     }
 
+    @Override
     public void startGame() {
         this.setTitle("Игра идёт");
         for (int j = 0; j < buttons.length; j++) {
@@ -101,6 +115,7 @@ public class View extends JFrame implements ActionListener {
         }
     }
 
+    @Override
     public void win()
     {
         this.setTitle("Победа!");
