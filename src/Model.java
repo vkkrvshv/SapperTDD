@@ -6,6 +6,13 @@ public class Model {
 
     Cell[][] cells;
 
+    ArrayList<Miner> listeners = new ArrayList<Miner>();
+
+    void addListener(Miner view)
+    {
+        listeners.add(view);
+    }
+
     public void generateBoard(int FIELD_SIZE, int mines) {
         cells = new Cell[FIELD_SIZE][FIELD_SIZE];
         for (int j = 0; j < FIELD_SIZE; j++) {
@@ -26,6 +33,24 @@ public class Model {
             cells[list.get(choice) / 100][list.get(choice) % 100].mined = true;
             incrementCountAroundCell(list.get(choice) % 100, list.get(choice)/100 );
             list.remove(choice);
+        }
+
+        for (Miner view : listeners) {
+            view.update(cells[column][row]);
+        }
+
+        if (cells[column][row].mined) {
+            for (Miner view : listeners) {
+                view.gameOver();
+                return;
+            }
+        }
+
+        if(isWon()) {
+            for (Miner view : listeners) {
+                view.win();
+                return;
+            }
         }
     }
 
