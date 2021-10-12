@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Model {
     static final int FIELD_SIZE = 10;
     static final int mines = 7;
@@ -12,6 +14,19 @@ public class Model {
             }
         }
 
+        ArrayList<Integer> list = new ArrayList<Integer>();
+        for(int row = 0; row < FIELD_SIZE; row++) {
+            for (int column = 0; column < FIELD_SIZE; column++) {
+                list.add(row*100 + column);
+            }
+        }
+
+        for (int a = 0; a < mines; a++) {
+            int choice = (int)(Math.random()*list.size());
+            cells[list.get(choice) / 100][list.get(choice) % 100].mined = true;
+            incrementCountAroundCell(list.get(choice) % 100, list.get(choice)/100 );
+            list.remove(choice);
+        }
     }
 
     private void incrementCountAroundCell(int row, int column) {

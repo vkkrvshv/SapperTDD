@@ -47,13 +47,13 @@ public class View extends JFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource().equals(this.getJMenuBar().getComponent(0))) {
-
+            controller.newGame(Model.FIELD_SIZE, Model.mines);
         }
         for (int j = 0; j < buttons[0].length; j++) {
             for (int i = 0; i < buttons.length; i++) {
                 if (e.getSource().equals(buttons[i][j])) {
                     try {
-
+                        controller.openCell(j, i);
                     }
                     catch (NullPointerException n) {
                         JOptionPane.showMessageDialog(this, "Игра не запущена");
