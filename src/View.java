@@ -45,7 +45,28 @@ public class View extends JFrame implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        if (e.getSource().equals(this.getJMenuBar().getComponent(0))) {
 
+        }
+        for (int j = 0; j < buttons[0].length; j++) {
+            for (int i = 0; i < buttons.length; i++) {
+                if (e.getSource().equals(buttons[i][j])) {
+                    try {
+
+                    }
+                    catch (NullPointerException n) {
+                        JOptionPane.showMessageDialog(this, "Игра не запущена");
+                    }
+
+                    if (cells[i][j].mined) {
+                        buttons[i][j].setForeground(Color.red);
+                        buttons[i][j].setText("*");
+                    }
+                    else buttons[i][j].setText(cells[i][j].counter + "");
+                    buttons[i][j].setEnabled(false);
+                }
+            }
+        }
     }
 
     public void update(Cell cell) {
