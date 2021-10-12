@@ -51,4 +51,17 @@ public class View extends JFrame implements ActionListener {
     public void update(Cell cell) {
 
     }
+
+    public void gameOver() {
+
+    }
+
+    public void startGame() {
+
+    }
+
+    public void win()
+    {
+
+    }
 }
