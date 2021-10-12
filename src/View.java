@@ -10,8 +10,9 @@ class Panel extends JPanel
 public class View extends JFrame implements ActionListener {
     Cell[][] cells = new Cell[Model.FIELD_SIZE][Model.FIELD_SIZE];
     JButton[][] buttons = new JButton[Model.FIELD_SIZE][Model.FIELD_SIZE];
-
     GridLayout grid = new GridLayout(Model.FIELD_SIZE, Model.FIELD_SIZE);
+
+    Controller controller;
 
     View(Model model) {
         setTitle("Сапёр");
